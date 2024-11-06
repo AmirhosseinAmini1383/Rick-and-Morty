@@ -15,6 +15,20 @@
   --green-600: #22c55e;
 }
 
+::-webkit-scrollbar {
+  width: 15px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: var(--slate-800);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--slate-500);
+}
+
 body {
   width: 100vw;
   min-height: 100vh;
@@ -77,6 +91,8 @@ button {
 .modal {
   width: 98%;
   min-height: 250px;
+  max-height: 700px;
+  overflow: auto;
   position: absolute;
   top: 50%;
   left: 50%;
