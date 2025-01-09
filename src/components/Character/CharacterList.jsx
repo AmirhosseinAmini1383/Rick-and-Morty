@@ -1,5 +1,6 @@
+import style from "./CharacterList.module.css";
 import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
-import Loader from "./Loader";
+import Loader from "../Loader";
 
 function CharacterList({
   characters,
@@ -8,14 +9,14 @@ function CharacterList({
   selectedId,
 }) {
   return (
-    <div className="characters-list">
+    <div className={style["characters-list"]}>
       {isLoading ? (
         <Loader />
       ) : (
         characters.map((item) => (
           <Character key={item.id} item={item}>
             <button
-              className="icon red"
+              className={`${style.icon} ${style.red}`}
               onClick={() => onSelectCharacter(item.id)}
             >
               {selectedId === item.id ? <EyeSlashIcon /> : <EyeIcon />}
@@ -31,7 +32,7 @@ export default CharacterList;
 
 export function Character({ item, children }) {
   return (
-    <div className="list__item">
+    <div className={style.list__item}>
       <img src={item.image} alt={item.name} />
       <CharacterName item={item} />
       <CharacterInfo item={item} />
@@ -51,7 +52,7 @@ function CharacterName({ item }) {
 
 function CharacterInfo({ item }) {
   return (
-    <div className="list-item__info info">
+    <div className={`${style["list-item__info"]} info`}>
       <span className={`status ${item.status === "Dead" ? "red" : ""}`}></span>
       <span>&nbsp;{item.status}</span>
       <span>&nbsp;-&nbsp;{item.species}</span>

@@ -1,8 +1,9 @@
+import style from "./CharacterDetail.module.css";
 import { ArrowUpCircleIcon } from "@heroicons/react/24/outline";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
-import Loader from "./Loader";
+import Loader from "../Loader";
 
 function CharacterDetail({ selectedId, onAddFavourite, isAddToFavourite }) {
   const [character, setCharacter] = useState(null);
@@ -35,7 +36,9 @@ function CharacterDetail({ selectedId, onAddFavourite, isAddToFavourite }) {
   if (isLoading) return <Loader />;
 
   if (!character || !selectedId)
-    return <div className="loading-message">please select a character</div>;
+    return (
+      <div className={style["loading-message"]}>please select a character</div>
+    );
 
   return (
     <div style={{ flex: 1 }}>
@@ -53,13 +56,13 @@ export default CharacterDetail;
 
 function CharacterSubInfo({ character, onAddFavourite, isAddToFavourite }) {
   return (
-    <div className="character-detail">
+    <div className={style["character-detail"]}>
       <img
         src={character.image}
         alt={character.name}
-        className="character-detail__img"
+        className={style["character-detail__img"]}
       />
-      <div className="character-detail__info">
+      <div className={style["character-detail__info"]}>
         <h3 className="name">
           <span>{character.gender === "Male" ? "👨🏼" : "👩🏼"}</span>
           <span>&nbsp;{character.name}</span>
@@ -71,11 +74,11 @@ function CharacterSubInfo({ character, onAddFavourite, isAddToFavourite }) {
           <span>&nbsp;{character.status}</span>
           <span>&nbsp;-&nbsp;{character.species}</span>
         </div>
-        <div className="location">
+        <div className={style.location}>
           <p>Last known location:</p>
           <p>{character.location.name}</p>
         </div>
-        <div className="actions">
+        <div className={style.actions}>
           {isAddToFavourite ? (
             <p>Already Added To Favourites</p>
           ) : (
@@ -105,12 +108,12 @@ function EpisodeList({ episodes }) {
     );
   }
   return (
-    <div className="character-episodes">
-      <div className="title">
+    <div className={style["character-episodes"]}>
+      <div className={style.title}>
         <h2>List of Episodes:</h2>
         <button onClick={() => setSortBy((is) => !is)}>
           <ArrowUpCircleIcon
-            className="icon"
+            className={style.icon}
             style={{ rotate: sortBy ? "0deg" : "180deg" }}
           />
         </button>

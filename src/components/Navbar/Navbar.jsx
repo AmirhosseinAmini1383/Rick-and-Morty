@@ -1,11 +1,13 @@
 import { HeartIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { useState } from "react";
-import Modal from "./Modal";
-import { Character } from "./CharacterList";
+import Modal from "../Modal/Modal.jsx";
+import { Character } from "../Character/CharacterList.jsx";
+import styleCharacterList from "../Character/CharacterList.module.css";
+import style from "./Navbar.module.css";
 
 function Navbar({ children }) {
   return (
-    <nav className="navbar">
+    <nav className={style.navbar}>
       <Logo />
       {children}
     </nav>
@@ -15,7 +17,7 @@ export default Navbar;
 
 function Logo() {
   return (
-    <div className="navbar__logo">
+    <div className={style.navbar__logo}>
       <img src="../../assets/images/logo.png" alt="logo" />
     </div>
   );
@@ -35,7 +37,9 @@ export function SearchInput({ query, setQuery }) {
 
 export function SearchResult({ numOfResult }) {
   return (
-    <div className="navbar__result">{`Found ${numOfResult} characters`}</div>
+    <div
+      className={style.navbar__result}
+    >{`Found ${numOfResult} characters`}</div>
   );
 }
 
@@ -47,7 +51,7 @@ export function Favourites({ favourites, onDeleteFavourite }) {
         {favourites.map((item) => (
           <Character key={item.id} item={item}>
             <button
-              className="icon red"
+              className={`${styleCharacterList.red} ${styleCharacterList.icon}`}
               onClick={() => onDeleteFavourite(item.id)}
             >
               <TrashIcon />
@@ -55,9 +59,9 @@ export function Favourites({ favourites, onDeleteFavourite }) {
           </Character>
         ))}
       </Modal>
-      <button className="heart" onClick={() => setIsOpen(true)}>
-        <HeartIcon className="icon" />
-        <span className="badge">{favourites.length}</span>
+      <button className={style.heart} onClick={() => setIsOpen(true)}>
+        <HeartIcon className={style.icon} />
+        <span className={style.badge}>{favourites.length}</span>
       </button>
     </div>
   );

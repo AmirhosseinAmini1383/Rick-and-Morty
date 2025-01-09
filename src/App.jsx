@@ -1,15 +1,15 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./App.css";
-import CharacterDetail from "./components/CharacterDetail";
-import CharacterList from "./components/CharacterList";
 import Navbar, {
   Favourites,
   SearchInput,
   SearchResult,
-} from "./components/Navbar";
+} from "./components/Navbar/Navbar";
 import { Toaster } from "react-hot-toast";
 import useCharacters from "./hooks/useCharacters";
 import useLocalStorage from "./hooks/useLocalStorage";
+import CharacterList from "./components/Character/CharacterList";
+import CharacterDetail from "./components/Character/CharacterDetail";
 
 function App() {
   const [query, setQuery] = useState("");
